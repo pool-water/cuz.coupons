@@ -5,7 +5,7 @@ const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 module.exports = {
   entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, "../go/server/static/"),
+    path: path.resolve(__dirname, "../docs/"),
     filename: "cuz-zine-2023-jan.bundled.js",
     libraryTarget: "var",
     library: "x_x",

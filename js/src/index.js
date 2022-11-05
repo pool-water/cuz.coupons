@@ -1,4 +1,5 @@
 import {default as Page01} from "./pages/page-01.js";
+import {default as Page05} from "./pages/page-05.js";
 
 const PAGES = new Array(16);
 
@@ -20,6 +21,9 @@ window.addEventListener("load", () => {
 
   // Fill in cover page
   PAGES[0] = Page01();
+
+  // ...
+  PAGES[4] = Page05();
 
   // When ready add to render list
   PAGES[0].on("loaded", function() {
