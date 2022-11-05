@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>cuz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/style.css">
+    <script src="/cuz-zine-2023-jan.bundled.js"></script>
+  </head>
+  <body>
+    <!-- ... -->
+    <div class="page" id="page-01">
+      <h1>sorry not sorry</h1>
+    </div>
+
+    <!-- ... -->
+    <div class="page" id="page-02">
+      <!-- <img src="/Vector-Arrays/Tribal Array/tribal-55.svg" id="tribal"> -->
+      <script>
+        let url = "/Tribal Array 3/Untitled-3-" + Math.floor(Math.random()*55) + ".svg"
+        // let el = document.getElementById("tribal");
+        //// el.src = url;
+
+        let container = document.getElementById("page-02");
+
+
+        for (let i=0; i < 3; i++) {
+          let url = "/Tribal Array 3/Untitled-3-XXX.svg"
+          let id = Math.floor(Math.random()*34) + 1;
+          id = id < 10 ? "0" + id : "" + id;
+          let x = url.replace("XXX", id);
+          let img = new Image();
+          img.src = x;
+          container.appendChild(img);
+
+          console.log(x);
+          console.log(container);
+        }
+      </script>
+    </div>
+    <div class="page" id="page-03">
+      <h1>telempathy</h1>
+      <p>okokok</p>
+    </div>
+    <div class="page" id="page-04">
+      <h1>life is pain au chocolat</h1>
+      <h2>yes definitely</h2>
+      <p>yeah yeah yeah</p>
+      <h2>but what if</h2>
+      <p>we treat our lovers more like friends</p>
+    </div>
+    <div class="page" id="page-05"></div>
+    <div class="page" id="page-06">
+      <!-- Ad Stuffed -->
+    </div>
+    <div class="page" id="page-07">
+      <!-- SUDOKU PAGE -->
+    </div>
+    <div class="page" id="page-08">
+      <center>
+        <h1>thanks</h1>
+        <h5>k-hole magazine</h5>
+        <h5>lucky peach</h5>
+        <h5>k-hole magazine</h5>
+        <h5>lucky peach</h5>
+        <h5>k-hole magazine</h5>
+        <h5>lucky peach</h5>
+        <h5>k-hole magazine</h5>
+        <h5>lucky peach</h5>
+        <h5>k-hole magazine</h5>
+        <h5>lucky peach</h5>
+        <h5>k-hole magazine</h5>
+        <h5>lucky peach</h5>
+        <h5>k-hole magazine</h5>
+        <h5>lucky peach</h5>
+        <h5>k-hole magazine</h5>
+        <h5>lucky peach</h5>
+        <h5>k-hole magazine</h5>
+      </center>
+    </div>
+  </body>
+</html>
