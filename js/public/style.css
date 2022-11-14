@@ -62,7 +62,11 @@ html, body {
   background-color: rgb(66, 53, 66);
 }
 
-#page-05, #page-06, #page-07, #page-08 {
+#page-05, #page-07, #page-08 {
   background-color: black;
   color: rgb(250, 216, 182);
+}
+
+#page-06 {
+  color: rgba(0, 0, 0, 1.0);
 }
