@@ -13,6 +13,13 @@ html, body {
   box-sizing: content-box;
 }
 
+#seed {
+  position: fixed;
+  left: 0.25em;
+  top: 0.25em;
+  font-family: monospace;
+}
+
 .page {
   height: 100%;
   width: 600px;

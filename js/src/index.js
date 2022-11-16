@@ -1,6 +1,7 @@
-import {default as Page01} from "./pages/page-01.js";
+import {default as CanCoverPage} from "./pages/page-01.js";
 import {default as Page05} from "./pages/page-05.js";
-import {default as LorenzAttach} from "./pages/lorenz.js";
+import {default as LorenzPage} from "./pages/lorenz.js";
+import {getScrollPercent, isInViewport} from "./utils.js";
 
 const PAGES = new Array(16);
 
@@ -13,19 +14,28 @@ export class NoApp {
   on() {}
 }
 
-window.addEventListener("load", () => {
+/**
+ *
+ */
+function Init(seed) {
+
 
   // Initialize with empty apps
   for (let i=0; i < PAGES.length; i++) {
+    if (PAGES[i] && PAGES[i].clear) {
+      console.log("Clearing", i, "...");
+      PAGES[i].clear();
+    }
+
     PAGES[i] = new NoApp();
   }
 
   // Fill in cover page
-  PAGES[0] = Page01();
+  PAGES[0] = CanCoverPage(seed);
 
   // ...
-  PAGES[4] = Page05();
-  PAGES[5] = LorenzAttach();
+  PAGES[4] = Page05(seed);
+  PAGES[5] = LorenzPage(seed);
 
   RENDER.push(PAGES[5]);
 
@@ -33,25 +43,75 @@ window.addEventListener("load", () => {
   PAGES[0].on("loaded", function() {
     RENDER.push(this);
   }.bind(PAGES[0]));
+}
+
+
+// Interpolate between to vec3 points
+function interpolat3(start, end, t) {
+  let [x0, y0, z0] = start;
+  let [x1, y1, z1] = end;
+  let x = x0 + t*(x1-x0);
+  let y = y0 + t*(y1-y0);
+  let z = z0 + t*(z1-z0);
+  return [Math.floor(x), Math.floor(y), Math.floor(z)];
+}
+
+function randomString() {
+  let s = "";
+  for (let i=0; i < 10; i++) {
+    s += String.fromCharCode(65 + 26*Math.random());
+  }
+  return s;
+}
+
+let KEY = "cuz.coupons-seed";
+
+/**
+ * Get Seed
+ *
+ * Return a seed...
+ */
+function getSeed() {
+
+  if (localStorage.getItem(KEY) === null) {
+    localStorage.setItem(KEY, randomString());
+  }
+
+  return localStorage.getItem(KEY);
+}
+
+function setSeed(val) {
+  localStorage.setItem(KEY, val);
+}
+
+
+window.addEventListener("load", () => {
+
+  document.getElementById("seed").value = getSeed();
+
+  document.getElementById("seed").addEventListener("change", (ev) => {
+    setSeed(ev.target.value);
+    Init(getSeed());
+  });
+
+
+  // Initialize and setup render loop
+  // ...
+  // ...
+
+
+  Init(getSeed());
 
   // Start render loop
   (function animate() {
     requestAnimationFrame(animate);
     RENDER.forEach((app) => {
-      app.update();
-      app.draw();
+      if (isInViewport(app.el)) {
+        app.update();
+        app.draw();
+      }
     });
   }());
-
-  // Interpolate between to vec3 points
-  function interpolat3(start, end, t) {
-    let [x0, y0, z0] = start;
-    let [x1, y1, z1] = end;
-    let x = x0 + t*(x1-x0);
-    let y = y0 + t*(y1-y0);
-    let z = z0 + t*(z1-z0);
-    return [Math.floor(x), Math.floor(y), Math.floor(z)];
-  }
 
   // scroll
   window.addEventListener("scroll", () => {
@@ -65,16 +125,3 @@ window.addEventListener("load", () => {
   });
 
 });
-
-/**
- * Get Scroll Percent
- *
- * Return the %-scrolled. 0.00 at top and 1.00 at bottom.
- */
-function getScrollPercent() {
-  var h = document.documentElement,
-    b = document.body,
-    st = 'scrollTop',
-    sh = 'scrollHeight';
-  return (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight);
-}
