@@ -3,22 +3,6 @@ import {Page} from "./page.js";
 
 import seedrandom from "seedrandom";
 
-
-/**
- *
- */
-function features(seed) {
-  let prng = new seedrandom(seed);
-  return {
-    flavor: "whatever",
-    label: prng.int32() % 2 ? "waves" : "dots",
-    orientation: prng.int32() % 2 ? "top" : "side",
-    love: "what? is this the thing that we were always talking about?\n...probably. posionous tree frog",
-    colors: [0x000000, 0x777777],
-    loop: true,
-  };
-}
-
 /**
  *
  */

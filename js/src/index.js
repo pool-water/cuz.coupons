@@ -1,4 +1,5 @@
-import {default as CanCoverPage} from "./pages/page-01.js";
+import {default as CanCoverPage} from "./pages/01-can.js";
+import {TribalPage} from "./pages/02-tribals.js";
 import {default as Page05} from "./pages/page-05.js";
 import {default as LorenzPage} from "./pages/lorenz.js";
 import {getScrollPercent, isInViewport} from "./utils.js";
@@ -32,6 +33,7 @@ function Init(seed) {
 
   // Fill in cover page
   PAGES[0] = CanCoverPage(seed);
+  PAGES[1] = new TribalPage(document.getElementById("page-02"), seed);
 
   // ...
   PAGES[4] = Page05(seed);
