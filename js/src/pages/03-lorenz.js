@@ -30,6 +30,12 @@ export class LorenzPage extends Page {
     this.app.draw();
   }
 
+  clear() {
+    this.el.querySelectorAll(":scope > canvas").forEach((v) => {
+      this.el.removeChild(v);
+    });
+  }
+
   features() {
     let prng = new seedrandom(this.seed);
     return {
@@ -40,10 +46,3 @@ export class LorenzPage extends Page {
     };
   }
 }
-
-export default function LorenzAttach(seed) {
-  const el = document.getElementById("page-06");
-  const page = new LorenzPage(el, seed);
-  return page;
-}
-

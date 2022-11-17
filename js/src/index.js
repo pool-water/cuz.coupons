@@ -1,7 +1,6 @@
 import {default as CanCoverPage} from "./pages/01-can.js";
 import {TribalPage} from "./pages/02-tribals.js";
-import {default as Page05} from "./pages/page-05.js";
-import {default as LorenzPage} from "./pages/lorenz.js";
+import {LorenzPage} from "./pages/03-lorenz.js";
 import {getScrollPercent, isInViewport} from "./utils.js";
 
 const PAGES = new Array(16);
@@ -24,7 +23,6 @@ function Init(seed) {
   // Initialize with empty apps
   for (let i=0; i < PAGES.length; i++) {
     if (PAGES[i] && PAGES[i].clear) {
-      console.log("Clearing", i, "...");
       PAGES[i].clear();
     }
 
@@ -34,17 +32,14 @@ function Init(seed) {
   // Fill in cover page
   PAGES[0] = CanCoverPage(seed);
   PAGES[1] = new TribalPage(document.getElementById("page-02"), seed);
-
-  // ...
-  PAGES[4] = Page05(seed);
-  PAGES[5] = LorenzPage(seed);
-
-  RENDER.push(PAGES[5]);
+  PAGES[2] = new LorenzPage(document.getElementById("page-03"), seed);
 
   // When ready add to render list
   PAGES[0].on("loaded", function() {
     RENDER.push(this);
   }.bind(PAGES[0]));
+
+  RENDER.push(PAGES[2]);
 }
 
 
