@@ -24,7 +24,21 @@ export class SudokuPage extends Page {
     grid.name = grid.id = "sudoku";
     grid.className = "sudoku";
 
-    console.log(grid.querySelectorAll(":scope > td"));
+    grid.querySelectorAll(":scope td").forEach((el) => {
+      const tab = generateTable(3, "small");
+      tab.className = "subgrid";
+      el.appendChild(tab);
+
+      tab.querySelectorAll(":scope td").forEach((cell) => {
+        const input = document.createElement("INPUT");
+        input.maxLength = 1;
+        input.size = 1;
+        input.type = "tel";
+        input.className = "sudoku-entry";
+
+        cell.appendChild(input);
+      });
+    });
 
     el.appendChild(grid);
   }

@@ -1,4 +1,13 @@
 /**
+ *
+ */
+export function position(el) {
+  const rect = el.getBoundingClientRect();
+  return  rect.top;
+}
+
+
+/**
  * Is in Viewport?
  */
 export function isInViewport(el) {
@@ -16,6 +25,7 @@ export function isInViewport(el) {
 
   return true;
 }
+
 
 /**
  * Get Scroll Percent
