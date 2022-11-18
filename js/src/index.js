@@ -1,7 +1,9 @@
 import {default as CanCoverPage} from "./pages/01-can.js";
 import {TribalPage} from "./pages/02-tribals.js";
 import {LorenzPage} from "./pages/03-lorenz.js";
-import {getScrollPercent, isInViewport} from "./utils.js";
+import {SudokuPage} from "./pages/07-sudoku.js";
+
+import {getScrollPercent, isInViewport, position} from "./utils.js";
 
 const PAGES = new Array(16);
 
@@ -19,7 +21,6 @@ export class NoApp {
  */
 function Init(seed) {
 
-
   // Initialize with empty apps
   for (let i=0; i < PAGES.length; i++) {
     if (PAGES[i] && PAGES[i].clear) {
@@ -33,6 +34,7 @@ function Init(seed) {
   PAGES[0] = CanCoverPage(seed);
   PAGES[1] = new TribalPage(document.getElementById("page-02"), seed);
   PAGES[2] = new LorenzPage(document.getElementById("page-03"), seed);
+  PAGES[6] = new SudokuPage(document.getElementById("page-07"), seed);
 
   // When ready add to render list
   PAGES[0].on("loaded", function() {
@@ -110,8 +112,11 @@ window.addEventListener("load", () => {
     });
   }());
 
+  let page01 = document.getElementById("page-01");
+
   // scroll
   window.addEventListener("scroll", () => {
+
     const v = interpolat3(
       [255, 165, 0],
       [255, 255,255],
@@ -119,6 +124,13 @@ window.addEventListener("load", () => {
     );
     const c = "rgb(" + v.join(", ") + ")";
     document.querySelector("HTML").style.scrollbarColor = c + " transparent";
+
+    // SMOOTH THIS OUT
+    const box01 = page01.getBoundingClientRect();
+
+    let d = Math.min(Math.max(-box01.top, 0)/box01.height*0.7, 1.0);
+    PAGES[0].setCrush(d);
+
   });
 
 });
