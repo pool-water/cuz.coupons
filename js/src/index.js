@@ -150,13 +150,6 @@ window.addEventListener("load", () => {
       PAGES[0].setCrush(d);
     }
 
-    let g = Math.floor(255*(-box01.top/(box01.height/2)));
-
-    let col = "rgb(" + g + ", " + g + ", " + g + ")";
-
-    console.log(g, col);
-    meow.style.color = col;
-
   });
 
 });

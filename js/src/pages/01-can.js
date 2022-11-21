@@ -47,6 +47,8 @@ export default function CanCoverPage(seed) {
   const w = el.offsetWidth;
   const h = el.offsetHeight;
 
+  console.log(w, h);
+
   canvas.width = w;
   canvas.height = h;
   app.setSize(w, h);
