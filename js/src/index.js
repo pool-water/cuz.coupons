@@ -3,6 +3,10 @@ import {TribalPage} from "./pages/02-tribals.js";
 import {LorenzPage} from "./pages/03-lorenz.js";
 import {SudokuPage} from "./pages/07-sudoku.js";
 
+import {default as Stats} from "stats.js";
+
+var stats = new Stats();
+
 import {getScrollPercent, isInViewport, position} from "./utils.js";
 
 const PAGES = new Array(16);
@@ -39,6 +43,8 @@ function Init(seed) {
   // When ready add to render list
   PAGES[0].on("loaded", function() {
     RENDER.push(this);
+    PAGES[0].update();
+    PAGES[0].draw();
   }.bind(PAGES[0]));
 
   RENDER.push(PAGES[2]);
@@ -86,6 +92,8 @@ function setSeed(val) {
 
 window.addEventListener("load", () => {
 
+  document.body.appendChild( stats.dom );
+
   document.getElementById("seed").value = getSeed();
 
   document.getElementById("seed").addEventListener("change", (ev) => {
@@ -103,16 +111,24 @@ window.addEventListener("load", () => {
 
   // Start render loop
   (function animate() {
+
     requestAnimationFrame(animate);
+
+    stats.begin();
+
     RENDER.forEach((app) => {
       if (isInViewport(app.el)) {
         app.update();
         app.draw();
       }
     });
+
+    stats.end();
   }());
 
   let page01 = document.getElementById("page-01");
+
+  let meow = document.getElementById("meow");
 
   // scroll
   window.addEventListener("scroll", () => {
@@ -129,7 +145,17 @@ window.addEventListener("load", () => {
     const box01 = page01.getBoundingClientRect();
 
     let d = Math.min(Math.max(-box01.top, 0)/box01.height*0.7, 1.0);
-    PAGES[0].setCrush(d);
+
+    if (PAGES[0].setCrush) {
+      PAGES[0].setCrush(d);
+    }
+
+    let g = Math.floor(255*(-box01.top/(box01.height/2)));
+
+    let col = "rgb(" + g + ", " + g + ", " + g + ")";
+
+    console.log(g, col);
+    meow.style.color = col;
 
   });
 

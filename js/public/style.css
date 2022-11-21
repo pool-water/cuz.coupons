@@ -13,7 +13,13 @@ html, body {
   box-sizing: content-box;
 }
 
+body {
+  display: block;
+  position: relative;
+}
+
 #seed {
+  margin-left: 200px;
   /*
   position: fixed;
   left: 0.25em;
@@ -23,16 +29,16 @@ html, body {
 }
 
 .page {
-  height: 100%;
-  width: 600px;
-  height: 825px;
-  max-width: 100%;
-  aspect-ratio: 8/11;
   box-sizing: border-box;
   margin: 0 auto 15px auto;
   padding: 10px;
-  position: relative;
   overflow-y: hidden;
+  overflow: hidden;
+
+  position: relative;
+  width: 600px;
+  max-width: 100%;
+  aspect-ratio: 600/850;
 }
 
 .page * {
@@ -50,11 +56,15 @@ html, body {
   color: rgb(250, 216, 182);
 }
 
+
 #page-01 canvas, .page .backdrop {
   position: absolute;
+  display: block;
   left: 0;
   top: 0;
   z-index: 0;
+  width: 100% !important;
+  height: 100%;
 }
 
 #page-02 {
@@ -65,6 +75,7 @@ html, body {
 #page-03 {
   background-color: rgb(18, 38, 43);
   color: rgb(250, 216, 182);
+  color: rgb(0, 0, 0, 0.7);
 }
 
 #page-04 {

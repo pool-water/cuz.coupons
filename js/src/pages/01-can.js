@@ -28,8 +28,6 @@ export default function CanCoverPage(seed) {
 
   // Generate canvas
   let canvas = document.createElement("CANVAS");
-  canvas.height = 600;
-  canvas.width = 600;
 
   // Attach to #page-01
   let el = document.getElementById("page-01");
@@ -45,7 +43,13 @@ export default function CanCoverPage(seed) {
     ...features(seed),
   });
 
-  app.setSize(el.offsetWidth, el.offsetHeight);
+
+  const w = el.offsetWidth;
+  const h = el.offsetHeight;
+
+  canvas.width = w;
+  canvas.height = h;
+  app.setSize(w, h);
 
   return app;
 }
