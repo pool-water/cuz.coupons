@@ -10,11 +10,22 @@ export class TribalPage extends Page {
 
     this.el.innerHTML = "";
 
+    const table = document.createElement("TABLE");
+
     this.features().forEach((url) => {
       const img = new Image();
       img.src = url;
-      this.el.appendChild(img);
+
+      const td = document.createElement("TD");
+      td.appendChild(img);
+
+      const tr = document.createElement("TR");
+      tr.appendChild(td);
+
+      table.appendChild(tr);
     });
+
+    this.el.appendChild(table);
 
   }
 

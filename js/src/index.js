@@ -131,8 +131,9 @@ window.addEventListener("load", () => {
   let meow = document.getElementById("meow");
 
   // scroll
-  window.addEventListener("scroll", () => {
+  window.addEventListener("scroll", handleScroll);
 
+  function handleScroll() {
     const v = interpolat3(
       [255, 165, 0],
       [255, 255,255],
@@ -144,12 +145,18 @@ window.addEventListener("load", () => {
     // SMOOTH THIS OUT
     const box01 = page01.getBoundingClientRect();
 
-    let d = Math.min(Math.max(-box01.top, 0)/box01.height*0.7, 1.0);
+    let d = Math.min(Math.max(-box01.top, 0)/box01.height, 1.0);
 
     if (PAGES[0].setCrush) {
       PAGES[0].setCrush(d);
     }
 
-  });
+    if (PAGES[2].app.setRotation) {
+      let u = getScrollPercent();
+      PAGES[2].app.setRotation(3*Math.PI*u+Math.PI/2.0);
+    }
+  }
+
+  handleScroll()
 
 });

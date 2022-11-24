@@ -35,6 +35,7 @@ module.exports = {
   ],
   devServer: {
     bonjour: true,
+    allowedHosts: "all",
     proxy: {
       "/holding": {
         target: "ws://localhost:8081",
