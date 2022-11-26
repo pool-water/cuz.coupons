@@ -45,6 +45,8 @@ export class LorenzPage extends Page {
       sigma: 10.0,
       rho: 10.74 + prng()*20.0,
       beta: 8.0/3.0,
+      col1: 0x33FF00,
+      col2: 0xD4538F,
     };
   }
 }
