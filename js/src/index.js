@@ -123,6 +123,8 @@ window.addEventListener("load", () => {
       }
     });
 
+    let v = (+new Date() / 1000.0 / 800.0) % 1.0;
+    PAGES[2].app.adjust(v);
     stats.end();
   }());
 
@@ -144,6 +146,7 @@ window.addEventListener("load", () => {
 
     // SMOOTH THIS OUT
     const box01 = page01.getBoundingClientRect();
+    const box03 = document.getElementById("page-03").getBoundingClientRect();
 
     let d = Math.min(Math.max(-box01.top, 0)/box01.height, 1.0);
 
@@ -152,8 +155,40 @@ window.addEventListener("load", () => {
     }
 
     if (PAGES[2].app.setRotation) {
+
+      let h = window.innerHeight;
+      let top = box03.height;
+
+      // f(h) = 0.0
+      // f(-top) = 1.0
+      //
+      // x*h   + b = 0.0
+      // x*-top + b = 1.0
+      // x*-top + -x*h = 1.0
+      // -x*(top+h) = 1.0
+      //
+      // [
+      //   h    1     0.0
+      //  -t    1     1.0
+      //  ]
+      //
+      // x = -1.0/(top+h)
+      // b = -x*h
+      //
+      //
+
+      let x = box03.top;
+
+      let pct = -1.0/(h+top) * x + h/(h+top);
+      pct = Math.min(pct, 1.0);
+      pct = Math.max(pct, 0.0);
+
+      // f(box03.height) = 0.0
+      // f(-box03.height) = 1.0
+      let e = Math.min(Math.max(-box03.top, 0)/box03.height, 1.0);
       let u = getScrollPercent();
-      PAGES[2].app.setRotation(3*Math.PI*u+Math.PI/2.0);
+      PAGES[2].app.setRotation(Math.PI*pct - Math.PI/2.0);
+      // PAGES[2].app.adjust(pct/12.0);
     }
   }
 

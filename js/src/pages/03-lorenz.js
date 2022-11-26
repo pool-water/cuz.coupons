@@ -16,6 +16,8 @@ export class LorenzPage extends Page {
     canvas.height = el.clientHeight;
     this.el.appendChild(canvas);
 
+    console.log(canvas.width, canvas.height);
+
     this.app = new LorenzApp({
       el: canvas,
       ...this.features(),
@@ -39,7 +41,7 @@ export class LorenzPage extends Page {
   features() {
     let prng = new seedrandom(this.seed);
     return {
-      pos: [0.1, 0.0, 0.0],
+      pos: [0.9, 0.0, 0.0],
       sigma: 10.0,
       rho: 10.74 + prng()*20.0,
       beta: 8.0/3.0,
