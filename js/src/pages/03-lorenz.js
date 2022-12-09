@@ -43,7 +43,7 @@ export class LorenzPage extends Page {
     let prng = new seedrandom(this.seed);
 
     let h = Math.floor(prng()*360);
-    let [s, l] = [70, 48];
+    let [s, l] = [70, 38];
 
     let col1 = new Color([h, s, l]);
     let col2 = new Color([(h + 140) % 360, s, l]);

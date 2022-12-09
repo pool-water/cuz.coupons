@@ -187,7 +187,7 @@ window.addEventListener("load", () => {
       // f(-box03.height) = 1.0
       let e = Math.min(Math.max(-box03.top, 0)/box03.height, 1.0);
       let u = getScrollPercent();
-      PAGES[2].app.setRotation(Math.PI*pct - Math.PI/2.0);
+      PAGES[2].app.setRotation(Math.PI*pct);
       // PAGES[2].app.adjust(pct/12.0);
     }
   }
