@@ -1,5 +1,5 @@
-import {LorenzApp} from "@pool-water/secret-sauce";
-import {Page} from "./page.js";
+import { LorenzApp } from "@pool-water/secret-sauce";
+import { Page } from "./page.js";
 
 import seedrandom from "seedrandom";
 
@@ -41,8 +41,8 @@ export class LorenzPage extends Page {
     return {
       pos: [0.1, 0.0, 0.0],
       sigma: 10.0,
-      rho: 10.74 + prng()*20.0,
-      beta: 8.0/3.0,
+      rho: 10.74 + prng() * 20.0,
+      beta: 8.0 / 3.0,
     };
   }
 }
