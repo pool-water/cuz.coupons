@@ -124,7 +124,7 @@ window.addEventListener("load", () => {
     });
 
     let v = (+new Date() / 1000.0 / 800.0) % 1.0;
-    PAGES[2].app.adjust(v);
+    // PAGES[2].app.adjust(v);
     stats.end();
   }());
 
@@ -158,24 +158,6 @@ window.addEventListener("load", () => {
 
       let h = window.innerHeight;
       let top = box03.height;
-
-      // f(h) = 0.0
-      // f(-top) = 1.0
-      //
-      // x*h   + b = 0.0
-      // x*-top + b = 1.0
-      // x*-top + -x*h = 1.0
-      // -x*(top+h) = 1.0
-      //
-      // [
-      //   h    1     0.0
-      //  -t    1     1.0
-      //  ]
-      //
-      // x = -1.0/(top+h)
-      // b = -x*h
-      //
-      //
 
       let x = box03.top;
 
